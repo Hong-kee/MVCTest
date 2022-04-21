@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="hongki.mapper.MyBoardMapper">
+    <cache/>
+
+    <select id="listBoard" parameterType="Search" resultType="MyBoard">
+        select * from myboard
+        <if test="area != null">
+            <where>
+                <foreach collection="area" item="item" separator="OR" open="(" close=")">
+                    ${item} LIKE #{searchKey}
+                </foreach>
+            </where>
+            and visible = 1
+        </if>
+        <if test="area == null">
+            where visible = 1
+        </if>
+        order by seq desc
+    </select>
+
+    <select id="countBoard" parameterType="Search" resultType="int">
+        select count(*)
+        from myboard
+        <if test="area != null">
+            <where>
+                <foreach collection="area" item="item" separator="OR" open="(" close=")">
+                    ${item} LIKE #{searchKey}
+                </foreach>
+            </where>
+            and visible = 1
+        </if>
+        <if test="area == null">
+            where visible = 1
+        </if>
+        order by seq desc
+    </select>
+
+    <insert id="insertBoard" parameterType="MyBoard">
+        insert into myboard
+        values (myboard_seq.nextval, #{title}, #{writer}, #{contents}, sysdate, 0, #{f_name}, 1)
+    </insert>
+
+    <select id="detailBoard" parameterType="int" resultType="MyBoard">
+        select *
+        from myboard
+        where seq = #{seq}
+    </select>
+
+    <update id="updateBoard" parameterType="MyBoard">
+        update myboard
+        set title    = #{title},
+            contents = #{contents}
+        where seq = #{seq}
+    </update>
+
+    <update id="deleteBoard" parameterType="int">
+        update myboard
+        set visible = 0
+        where seq = #{seq}
+    </update>
+
+    <insert id="insertReply" parameterType="MyReply">
+        insert into myreply
+        values(myreply_seq.nextval, #{mr_title}, #{mr_writer}, #{mr_contents}, sysdate, #{seq})
+    </insert>
+
+    <select id="listReply" parameterType="int" resultType="MyReply">
+        select * from myreply
+        where seq = #{seq}
+    </select>
+</mapper>

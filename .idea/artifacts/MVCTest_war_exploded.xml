@@ -1,0 +1,21 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="MVCTest:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/MVCTest_war_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="MVCTest/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="MVCTest" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="file-copy" path="$USER_HOME$/Downloads/apache-tomcat-9.0.60-windows-x64/apache-tomcat-9.0.60/lib/ojdbc6.jar" />
+          <element id="file-copy" path="$USER_HOME$/Downloads/apache-tomcat-9.0.60-windows-x64/apache-tomcat-9.0.60/lib/mybatis-3.2.6.jar" />
+          <element id="file-copy" path="$USER_HOME$/Downloads/apache-tomcat-9.0.60-windows-x64/apache-tomcat-9.0.60/lib/jstl.jar" />
+          <element id="file-copy" path="$USER_HOME$/Downloads/apache-tomcat-9.0.60-windows-x64/apache-tomcat-9.0.60/lib/el-api.jar" />
+          <element id="file-copy" path="$USER_HOME$/Downloads/apache-tomcat-9.0.60-windows-x64/apache-tomcat-9.0.60/lib/cos.jar" />
+          <element id="library" level="project" name="lib" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>
